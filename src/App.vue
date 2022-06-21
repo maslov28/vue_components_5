@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <app-tabs 
+    :activeTab="activeTab"
+    :tabs="tabs"
+    @activeTabChange="activeTabChange"
+  ></app-tabs>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppTabs from './components/AppTabs.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      tabs: [
+        {
+          name: 'Все',
+          key: 'all'
+        },
+        { 
+          name: 'Новые',
+          key: 'new'
+        },
+        {
+          name: 'Старые',
+          key: 'old'
+        }
+      ],
+      activeTab: 'all'
+    }
+  },
+  methods: {
+    activeTabChange(value) {
+      this.activeTab = value
+    }
+  },
+  components: {AppTabs}
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
